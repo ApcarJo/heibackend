@@ -11,8 +11,8 @@ class Gwschedule extends Model
         'date',
         'competition',
         'gw',
-        'home',
-        'away',
+        'home_id',
+        'away_id',
         'kickOff',
         'stadium_id',
         'van_id',
@@ -26,13 +26,17 @@ class Gwschedule extends Model
         'port',
 
     ];
-    
+
     public function stadium(){
-        return $this->belongsTo(Stadium::class);
+        return $this->belongsTo(stadium::class);
     }
 
     public function team(){
         return $this->belongsTo(Team::class);
+    }
+
+    public function user(){
+        return $this->hasMany(User::class);
     }
 
     use HasFactory;

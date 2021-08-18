@@ -21,5 +21,9 @@ class Team extends Model
     public function stadium(){
         return $this->hasOne(Stadium::class);
     }
+
+    public function gwschedule(){
+        return $this->hasMany(Gwschedule::class);
+    }
     use HasFactory;
 }

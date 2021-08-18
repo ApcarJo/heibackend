@@ -15,20 +15,17 @@ class CreateTeamsTable extends Migration
     {
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-
             $table->string('name')->unique();
-            $table->string('stadium_id')->unique();
+            $table->foreignId('stadium_id')->references('id')->on('stadiums');
             $table->boolean('isFD')->require();
             $table->boolean('isUCL')->default(false);
             $table->boolean('isUEL')->default(false);
             $table->boolean('isSC')->default(false);
             $table->boolean('isCDR')->default(false);
+            $table->timestamps();
 
         });
     }
-
-
 
     /**
      * Reverse the migrations.

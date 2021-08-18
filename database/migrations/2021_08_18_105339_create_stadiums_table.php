@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStadiaTable extends Migration
+class CreateStadiumsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateStadiaTable extends Migration
      */
     public function up()
     {
-        Schema::create('Stadium', function (Blueprint $table) {
+        Schema::create('stadiums', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-
+            
             $table->string('name')->unique();
             $table->string('address')->unique();
             $table->string('tvCompound')->nullable();
@@ -27,6 +26,7 @@ class CreateStadiaTable extends Migration
             $table->boolean('isRobot')->nullable();
             $table->boolean('hasRraCover')->default(true);
             $table->string('information')->nullable();
+            $table->timestamps();
         });
     }
 
@@ -37,6 +37,6 @@ class CreateStadiaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('Stadium');
+        Schema::dropIfExists('stadiums');
     }
 }

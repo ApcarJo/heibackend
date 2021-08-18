@@ -18,7 +18,7 @@ class Stadium extends Model
         'isGLT',
         'isRobot',
         'rraCover',
-        'information'
+        'information',
     ];
     public function gwschedule(){
         return $this->hasMany(Gwschedule::class);
