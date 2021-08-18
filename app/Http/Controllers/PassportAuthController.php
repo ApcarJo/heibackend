@@ -39,7 +39,8 @@ class PassportAuthController extends Controller
         ];
 
         if (auth()->attempt($data)) {
-            $user = auth()->user()->only(['email', 'name', 'id']);
+            // $user = auth()->user();
+            $user = auth()->user()->only(['email', 'name', 'id', 'isAdmin']);
             $token = auth()->user()->createToken('LaravelAuthApp')->accessToken;
 
             return response()->json(['token' => $token, 'user' => $user], 200);

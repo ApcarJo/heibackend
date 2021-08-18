@@ -20,8 +20,14 @@ use App\Http\Controllers\PassportAuthController;
 Route::post('register', [PassportAuthController::class, 'register']);
 Route::post('login', [PassportAuthController::class, 'login']);
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    //return $request->user();
+// Route::get('allusers', [UserController::class, 'index']);
+// Route::post('finduser', [UserController::class, 'byName']);
+
+
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+    
+    
+Route::middleware('auth:api')->group(function () {
 
     //USER CONTROLLER
     Route::get('allusers', [UserController::class, 'index']);
@@ -33,4 +39,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     Route::delete('deleteuser', [UserController::class, 'destroy']);
     Route::put('modifyuser', [UserController::class, 'update']);
 
+    // return $request->user();
 });
