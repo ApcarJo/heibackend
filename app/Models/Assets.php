@@ -20,8 +20,7 @@ class Assets extends Model
         'type',
         'user_id',
         'loomNumber',
-        'kit_van_id'
-
+        'kit_van_id',
     ];
 
     public function van(){
@@ -29,7 +28,7 @@ class Assets extends Model
     }
 
     public function user(){
-        return $this->hasOne(User::class)
+        return $this->hasOne(User::class);
     }
 
     use HasFactory;

@@ -39,5 +39,9 @@ class Gwschedule extends Model
         return $this->hasMany(User::class);
     }
 
+    public function van(){
+        return $this->hasOne(Van::class);
+    }
+
     use HasFactory;
 }

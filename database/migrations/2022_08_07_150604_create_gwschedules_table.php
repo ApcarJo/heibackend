@@ -23,7 +23,7 @@ class CreateGwschedulesTable extends Migration
             $table->foreignId('away_id')->references('id')->on('teams');
             $table->string('kickOff')->require();
             $table->foreignId('stadium_id')->references('id')->on('stadiums');
-            // $table->foreignId('van_id')->references('id')->on('vans');
+            $table->foreignId('van_id')->references('id')->on('vans');
             $table->foreignId('tg1_user_id')->references('id')->on('users');
             $table->foreignId('tg2_user_id')->references('id')->on('users');
             $table->foreignId('vtg_user_id')->references('id')->on('users');

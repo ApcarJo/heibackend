@@ -23,8 +23,12 @@ class Van extends Model
         'isActive',
     ];
 
-    public function assetsVan(){
+    public function assets(){
         return $this->hasMany(Assets::class);
+    }
+
+    public function gwschedule(){
+        return $this->hasOne(Gwschedule::class);
     }
 
     use HasFactory;
