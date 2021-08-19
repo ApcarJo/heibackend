@@ -62,7 +62,7 @@ class StadiumController extends Controller
             } else {
                 return response()->json([
                     'success' => false,
-                    'message' => 'Van not added'
+                    'message' => 'Stadium not added'
                 ], 500);
             };
         } else {
@@ -79,9 +79,21 @@ class StadiumController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function selector(Request $request)
     {
-        //
+        $stadium = Stadium::where('name', '=', $request->name)->get();
+
+        if (!$stadium->isEmpty()) {
+            return response()->json([
+                'success' => true,
+                'data' => $stadium
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'This stadium does not exist'
+            ], 400);
+        }
     }
 
     /**
@@ -90,9 +102,20 @@ class StadiumController extends Controller
      * @param  \App\Models\Stadium  $stadium
      * @return \Illuminate\Http\Response
      */
-    public function show(Stadium $stadium)
+    public function byId(Request $request)
     {
-        //
+        $stadium = Stadium::where('id', '=', $request->stadium_id)->get();
+        if (!$stadium->isEmpty()) {
+            return response()->json([
+                'success' => true,
+                'data' => $stadium
+            ], 200);
+        } else {
+            return response()->json([
+                'success'=>false,
+                'message'=>'Stadium not found'
+            ], 400);
+        }
     }
 
     /**
@@ -101,9 +124,20 @@ class StadiumController extends Controller
      * @param  \App\Models\Stadium  $stadium
      * @return \Illuminate\Http\Response
      */
-    public function edit(Stadium $stadium)
+    public function byName(Request $request)
     {
-        //
+        $stadium = Stadium::where('name', 'LIKE', '%'.$request->name.'%')->get();
+        if (!$stadium->isEmpty()) {
+            return response()->json([
+                'success' => true,
+                'data' => $stadium
+            ], 200);
+        } else {
+            return response()->json([
+                'success'=>false,
+                'message'=>'This Stadium does not exist'
+            ], 400);
+        }
     }
 
     /**
@@ -113,9 +147,36 @@ class StadiumController extends Controller
      * @param  \App\Models\Stadium  $stadium
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Stadium $stadium)
+    public function update(Request $request)
     {
-        //
+        $user = auth()->user();
+
+        if ($user->isAdmin) {
+
+            $stadium = Stadium::find($request->stadium_id);
+
+            if ($stadium) {
+
+                $update = $stadium->fill($request->all())->save();                    
+
+                if ($update) {
+                    return response()->json([
+                        'success' => true,
+                        'message' => 'Stadium info updated'
+                    ], 200);
+                } else {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'Stadium not updated'
+                    ], 400);
+                }
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Can not update de stadium'
+                ], 400);
+            }
+        }
     }
 
     /**
@@ -124,8 +185,32 @@ class StadiumController extends Controller
      * @param  \App\Models\Stadium  $stadium
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Stadium $stadium)
+    public function destroy(Request $request)
     {
-        //
+        $user = auth()->user();
+
+        if ($user->isAdmin) {
+
+            $stadium = Stadium::where('id', '=', $request->stadium_id)->delete();
+
+            if ($stadium) {
+
+                return response()->json([
+                    'success' => true,
+                    'data' => $stadium,
+                    'message' => 'Stadium deleted'
+                ], 200);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Stadium not found'
+                ], 500);
+            }
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => "You don't have permissions"
+            ], 400);
+        }
     }
 }

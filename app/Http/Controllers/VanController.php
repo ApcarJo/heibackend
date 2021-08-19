@@ -98,6 +98,29 @@ class VanController extends Controller
     /**
      * Display the specified resource.
      *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function selector(Request $request)
+    {
+        $van = Van::where('customNote', '=', $request->customNote)->get();
+
+        if (!$van->isEmpty()) {
+            return response()->json([
+                'success' => true,
+                'data' => $van
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'This van does not exist'
+            ], 400);
+        }
+    }
+
+    /**
+     * Display the specified resource.
+     *
      * @param  \App\Models\Van  $van
      * @return \Illuminate\Http\Response
      */

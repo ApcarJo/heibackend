@@ -55,8 +55,9 @@ Route::middleware('auth:api')->group(function () {
     Route::delete('deletevan', [VanController::class, 'destroy']);
     Route::put('modifyvan', [VanController::class, 'update']);
     Route::post('createvan', [VanController::class, 'create']);
+    Route::post('vanselector', [VanController::class, 'selector']);
 
-    //VAN CONTROLLER
+    //STADIUM CONTROLLER
     Route::get('allstadiums', [StadiumController::class, 'index']);
     Route::post('findstadium', [StadiumController::class, 'byName']);
     Route::post('choosestadium', [StadiumController::class, 'byId']);
@@ -64,6 +65,7 @@ Route::middleware('auth:api')->group(function () {
     Route::delete('deletestadiums', [StadiumController::class, 'destroy']);
     Route::put('modifystadiums', [StadiumController::class, 'update']);
     Route::post('createstadiums', [StadiumController::class, 'create']);
+    Route::post('stadiumselector', [StadiumController::class, 'selector']);
 
 
     // return $request->user();
