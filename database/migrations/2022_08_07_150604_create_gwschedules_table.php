@@ -19,7 +19,7 @@ class CreateGwschedulesTable extends Migration
             $table->string('competition')->require();
             $table->string('GW')->unique();
             $table->string('kickOff')->require();
-            $table->foreignId('stadium_id')->references('id')->on('stadiums');
+            $table->foreignId('stadium_id')->references('id')->on('stadia');
             // $table->foreignId('userTeam_id')->references('id')->on('user_teams');
             // $table->foreignId('vanGW_id')->references('id')->on('van_gws');
             $table->boolean('isMd-1')->default(false);

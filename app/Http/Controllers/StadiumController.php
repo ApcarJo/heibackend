@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\stadium;
+use App\Models\Stadium;
 use Illuminate\Http\Request;
 
 class StadiumController extends Controller
@@ -14,7 +14,22 @@ class StadiumController extends Controller
      */
     public function index()
     {
-        //
+        $user = auth()->user();
+
+        if ($user) {
+
+            $allStadiums = Stadium::all();
+
+            return response()->json([
+                'success' => true,
+                'data' => $allStadiums,
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'You have no permissions'
+            ], 401);
+        }
     }
 
     /**
@@ -22,9 +37,40 @@ class StadiumController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $user = auth()->user();
+
+        if ($user) {
+            $this->validate($request, [
+                'name' => 'required',
+                'address' => 'required',
+                'contact' => 'required',
+            ]);
+
+            $stadium = Stadium::create([
+                'name' => $request->name,
+                'address' => $request->address,
+                'contact' => $request->contact
+            ]);
+
+            if ($stadium) {
+                return response()->json([
+                    'success' => true,
+                    'data' => $stadium
+                ]);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Van not added'
+                ], 500);
+            };
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'You need to log in first'
+            ]);
+        }
     }
 
     /**
@@ -41,10 +87,10 @@ class StadiumController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\stadium  $stadium
+     * @param  \App\Models\Stadium  $stadium
      * @return \Illuminate\Http\Response
      */
-    public function show(stadium $stadium)
+    public function show(Stadium $stadium)
     {
         //
     }
@@ -52,10 +98,10 @@ class StadiumController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\stadium  $stadium
+     * @param  \App\Models\Stadium  $stadium
      * @return \Illuminate\Http\Response
      */
-    public function edit(stadium $stadium)
+    public function edit(Stadium $stadium)
     {
         //
     }
@@ -64,10 +110,10 @@ class StadiumController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\stadium  $stadium
+     * @param  \App\Models\Stadium  $stadium
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, stadium $stadium)
+    public function update(Request $request, Stadium $stadium)
     {
         //
     }
@@ -75,10 +121,10 @@ class StadiumController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\stadium  $stadium
+     * @param  \App\Models\Stadium  $stadium
      * @return \Illuminate\Http\Response
      */
-    public function destroy(stadium $stadium)
+    public function destroy(Stadium $stadium)
     {
         //
     }

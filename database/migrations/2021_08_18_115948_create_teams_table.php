@@ -16,7 +16,7 @@ class CreateTeamsTable extends Migration
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->foreignId('stadium_id')->references('id')->on('stadiums');
+            $table->foreignId('stadium_id')->references('id')->on('stadia');
             $table->boolean('isFD')->require();
             $table->boolean('isUCL')->default(false);
             $table->boolean('isUEL')->default(false);

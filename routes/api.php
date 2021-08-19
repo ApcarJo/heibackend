@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PassportAuthController;
 use App\Http\Controllers\VanController;
 use App\Http\Controllers\VanGWController;
+use App\Http\Controllers\StadiumController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +55,15 @@ Route::middleware('auth:api')->group(function () {
     Route::delete('deletevan', [VanController::class, 'destroy']);
     Route::put('modifyvan', [VanController::class, 'update']);
     Route::post('createvan', [VanController::class, 'create']);
+
+    //VAN CONTROLLER
+    Route::get('allstadiums', [StadiumController::class, 'index']);
+    Route::post('findstadium', [StadiumController::class, 'byName']);
+    Route::post('choosestadium', [StadiumController::class, 'byId']);
+    Route::get('activestadium', [StadiumController::class, 'showActive']);
+    Route::delete('deletestadiums', [StadiumController::class, 'destroy']);
+    Route::put('modifystadiums', [StadiumController::class, 'update']);
+    Route::post('createstadiums', [StadiumController::class, 'create']);
 
 
     // return $request->user();
