@@ -142,6 +142,7 @@ class UserController extends Controller
                     'address'=>$request->address,
                     'city'=>$request->city,
                     'nif'=>$request->nif,
+                    'isActive'=>$request->isActive,
                     'password'=>bcrypt($request->password)
                 ])->save();
 

@@ -119,6 +119,22 @@ class StadiumController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Stadium  $stadium
+     * @return \Illuminate\Http\Response
+     */
+    public function showActive()
+    {
+        $allActiveStadium = Stadium::where('isActive', 1)->get();
+
+        return response()->json([
+            'success' => true,
+            'data' => $allActiveStadium,
+        ], 200);
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Stadium  $stadium

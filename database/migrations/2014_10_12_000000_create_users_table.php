@@ -30,6 +30,7 @@ class CreateUsersTable extends Migration
             $table->string('address')->nullable();
             $table->string('city')->nullable();
             $table->string('role')->nullable();
+            $table->boolean('isActive')->default(true);
             $table->boolean('isAdmin')->default(true);
             $table->rememberToken();
             $table->timestamps();
