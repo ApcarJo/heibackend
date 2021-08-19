@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PassportAuthController;
+use App\Http\Controllers\VanController;
+use App\Http\Controllers\VanGWController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +21,6 @@ use App\Http\Controllers\PassportAuthController;
 
 Route::post('register', [PassportAuthController::class, 'register']);
 Route::post('login', [PassportAuthController::class, 'login']);
-
-// Route::get('allusers', [UserController::class, 'index']);
-// Route::post('finduser', [UserController::class, 'byName']);
 
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
@@ -38,6 +37,24 @@ Route::middleware('auth:api')->group(function () {
     Route::put('archiveuser', [UserController::class, 'archive']);
     Route::delete('deleteuser', [UserController::class, 'destroy']);
     Route::put('modifyuser', [UserController::class, 'update']);
+
+
+    //VAN_GW CONTROLLER
+    Route::get('allvangw', [VanGWController::class, 'index']);
+    Route::post('choosevangw', [VanGWController::class, 'byId']);
+    Route::delete('deletevangw', [VanGWController::class, 'destroy']);
+    Route::put('modifyvangw', [VanGWController::class, 'update']);
+    Route::post('createvangw', [VanGWController::class, 'create']);
+
+    //VAN CONTROLLER
+    Route::get('allvans', [VanController::class, 'index']);
+    Route::post('findvan', [VanController::class, 'bycustomName']);
+    Route::post('choosevan', [VanController::class, 'byId']);
+    Route::get('activevans', [VanController::class, 'showActive']);
+    Route::delete('deletevan', [VanController::class, 'destroy']);
+    Route::put('modifyvan', [VanController::class, 'update']);
+    Route::post('createvan', [VanController::class, 'create']);
+
 
     // return $request->user();
 });

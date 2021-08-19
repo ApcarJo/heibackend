@@ -18,14 +18,14 @@ class CreateVansTable extends Migration
             $table->string('customNote')->require();
             $table->string('model');
             $table->string('licensePlate')->require();
-            $table->string('crossCheckCode');
-            $table->date('ITV');
-            $table->string('weight');
-            $table->string('height');
-            $table->string('gas');
-            $table->string('bastidor');
-            $table->date('lastInspectionDate');
-            $table->string('KMs');
+            $table->string('crossCheckCode')->nullable();
+            $table->date('ITV')->nullable();
+            $table->string('weight')->nullable();
+            $table->string('height')->nullable();
+            $table->string('gas')->default('Diesel');
+            $table->string('bastidor')->nullable();
+            $table->date('lastInspectionDate')->nullable();
+            $table->string('KMs')->nullable();
             $table->boolean('isActive')->default(true);
 
             $table->timestamps();

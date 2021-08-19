@@ -9,7 +9,7 @@ class Van extends Model
 {
 
     protected $fillable = [
-        'vanNumber',
+        'customNote',
         'model',
         // 'assestVan_Id',
         'licensePlate',
