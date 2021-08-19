@@ -11,7 +11,7 @@ class Van extends Model
     protected $fillable = [
         'vanNumber',
         'model',
-        'assestsVan_Id',
+        // 'assestVan_Id',
         'licensePlate',
         'crossCheckCode',
         'ITV',
@@ -20,15 +20,20 @@ class Van extends Model
         'gas',
         'bastidor',
         'lastInspectionDate',
+        'KMs',
         'isActive',
     ];
 
-    public function assets(){
-        return $this->hasMany(Assets::class);
+    public function asset(){
+        return $this->hasMany(Asset::class);
     }
 
     public function gwschedule(){
         return $this->hasOne(Gwschedule::class);
+    }
+
+    public function vangw(){
+        return $this->hasMany(VanGW::class);
     }
 
     use HasFactory;

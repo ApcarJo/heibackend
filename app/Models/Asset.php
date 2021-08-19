@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Assets extends Model
+class Asset extends Model
 {
 
     protected $fillable = [
@@ -22,14 +22,13 @@ class Assets extends Model
         'loomNumber',
         'kit_van_id',
     ];
-
+    
     public function van(){
         return $this->belongsTo(Van::class);
     }
-
+    
     public function user(){
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class);
     }
-
     use HasFactory;
 }

@@ -15,7 +15,6 @@ class CreateVansTable extends Migration
     {
         Schema::create('vans', function (Blueprint $table) {
             $table->id();
-
             $table->string('customNote')->require();
             $table->string('model');
             $table->string('licensePlate')->require();
@@ -26,8 +25,8 @@ class CreateVansTable extends Migration
             $table->string('gas');
             $table->string('bastidor');
             $table->date('lastInspectionDate');
-            $table->boolean('isActive');
-
+            $table->string('KMs');
+            $table->boolean('isActive')->default(true);
 
             $table->timestamps();
         });

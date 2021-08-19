@@ -8,19 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Gwschedule extends Model
 {
     protected $fillable = [
+        'GW',
+        'Competition',
         'date',
-        'competition',
-        'gw',
-        'home_id',
-        'away_id',
+        'Matchgw_id',
         'kickOff',
         'stadium_id',
-        'van_id',
-        'tg1_user_id',
-        'tg2_user_id',
-        'vtg_user_id',
-        'ro_user_id',
-        'aro_user_id',
+        'userTeam_id',
+        'vanGW_id',
         'isMd-1',
         'vlan',
         'port',
@@ -31,16 +26,16 @@ class Gwschedule extends Model
         return $this->belongsTo(stadium::class);
     }
 
-    public function team(){
-        return $this->belongsTo(Team::class);
+    public function matchgw(){
+        return $this->hasOne(Matchgw::class);
     }
 
-    public function user(){
-        return $this->hasMany(User::class);
+    public function userTeam(){
+        return $this->hasOne(userTeam::class);
     }
 
-    public function van(){
-        return $this->hasOne(Van::class);
+    public function vangw(){
+        return $this->hasOne(VanGW::class);
     }
 
     use HasFactory;

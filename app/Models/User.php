@@ -54,6 +54,15 @@ class User extends Authenticatable
     ];
 
     public function gwschedule(){
-        return $this->belongsTo(Gwschedule::class);
+        return $this->hasMany(Gwschedule::class);
     }
+
+    public function usergw(){
+        return $this->hasMany(usergw::class);
+    }
+
+    public function asset(){
+        return $this->hasMany(Asset::class);
+    }
+
 }

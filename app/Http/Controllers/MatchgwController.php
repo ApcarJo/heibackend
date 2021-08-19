@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Assets;
+use App\Models\Matchgw;
 use Illuminate\Http\Request;
 
-class AssetsController extends Controller
+class MatchgwController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class AssetsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Assets  $assets
+     * @param  \App\Models\Matchgw  $matchgw
      * @return \Illuminate\Http\Response
      */
-    public function show(Assets $assets)
+    public function show(Matchgw $matchgw)
     {
         //
     }
@@ -52,10 +52,10 @@ class AssetsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Assets  $assets
+     * @param  \App\Models\Matchgw  $matchgw
      * @return \Illuminate\Http\Response
      */
-    public function edit(Assets $assets)
+    public function edit(Matchgw $matchgw)
     {
         //
     }
@@ -64,10 +64,10 @@ class AssetsController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Assets  $assets
+     * @param  \App\Models\Matchgw  $matchgw
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Assets $assets)
+    public function update(Request $request, Matchgw $matchgw)
     {
         //
     }
@@ -75,10 +75,10 @@ class AssetsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Assets  $assets
+     * @param  \App\Models\Matchgw  $matchgw
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Assets $assets)
+    public function destroy(Matchgw $matchgw)
     {
         //
     }

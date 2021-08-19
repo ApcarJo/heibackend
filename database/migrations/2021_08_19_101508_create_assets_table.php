@@ -26,7 +26,7 @@ class CreateAssetsTable extends Migration
             $table->foreignId('user_id')->references('id')->on('users');
             $table->string('loomNumber');
             $table->foreignId('kit_van_id')->references('id')->on('vans');
-
+        
             $table->timestamps();
         });
     }
