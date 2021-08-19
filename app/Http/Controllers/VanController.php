@@ -76,12 +76,23 @@ class VanController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Van  $van
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function byId(Request $request)
     {
-        //
+        $van = Van::where('id', '=', $request->van_id)->get();
+        if (!$van->isEmpty()) {
+            return response()->json([
+                'success' => true,
+                'data' => $van
+            ], 200);
+        } else {
+            return response()->json([
+                'success'=>false,
+                'message'=>'Van not found'
+            ], 400);
+        }
     }
 
     /**
@@ -106,9 +117,20 @@ class VanController extends Controller
      * @param  \App\Models\Van  $van
      * @return \Illuminate\Http\Response
      */
-    public function edit(Van $van)
+    public function byName(Request $request)
     {
-        //
+        $van = Van::where('customNote', 'LIKE', '%'.$request->customName.'%')->get();
+        if (!$van->isEmpty()) {
+            return response()->json([
+                'success' => true,
+                'data' => $van
+            ], 200);
+        } else {
+            return response()->json([
+                'success'=>false,
+                'message'=>'This van does not exist'
+            ], 400);
+        }
     }
 
     /**

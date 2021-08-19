@@ -48,7 +48,7 @@ Route::middleware('auth:api')->group(function () {
 
     //VAN CONTROLLER
     Route::get('allvans', [VanController::class, 'index']);
-    Route::post('findvan', [VanController::class, 'bycustomName']);
+    Route::post('findvan', [VanController::class, 'byName']);
     Route::post('choosevan', [VanController::class, 'byId']);
     Route::get('activevans', [VanController::class, 'showActive']);
     Route::delete('deletevan', [VanController::class, 'destroy']);
