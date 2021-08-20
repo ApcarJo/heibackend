@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\AssetController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -13,6 +13,8 @@ use App\Http\Controllers\TeamController;
 use App\Http\Controllers\UserTeamController;
 use App\Http\Controllers\GwscheduleController;
 use App\Http\Controllers\GwupdateController;
+use App\Http\Controllers\MatchgwController;
+use App\Http\Controllers\AssetController;
 
 /*
 |--------------------------------------------------------------------------
@@ -128,6 +130,16 @@ Route::middleware('auth:api')->group(function () {
     Route::post('byWarrantyYear', [AssetController::class, 'byWarrantyYear']);
     Route::put('modifyasset', [AssetController::class, 'update']);
     Route::delete('deleteasset', [AssetController::class, 'destroy']);
+
+    //MATCH GW CONTROLLER
+    Route::get('allmatchgws', [MatchgwController::class, 'index']);
+    Route::post('creatematchgw', [MatchgwController::class, 'create']);
+    Route::post('choosematchgw', [MatchgwController::class, 'byId']);
+    Route::post('bygwschedule', [MatchgwController::class, 'byGwschedule']);
+    Route::get('activegwschedule', [MatchgwController::class, 'showActive']);
+    Route::post('byteamid', [MatchgwController::class, 'byName']);
+    Route::put('modifymatchgw', [MatchgwController::class, 'update']);
+    Route::delete('deletematchgw', [MatchgwController::class, 'destroy']);
 
     // return $request->user();
 });

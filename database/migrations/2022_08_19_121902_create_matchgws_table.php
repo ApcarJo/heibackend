@@ -19,6 +19,7 @@ class CreateMatchgwsTable extends Migration
             $table->string('Competition');
             $table->foreignId('gwschedule_id')->references('id')->on('gwschedules');
             $table->foreignId('team_id')->references('id')->on('teams');
+            $table->boolean('isActive')->default(true);
             $table->timestamps();
         });
     }

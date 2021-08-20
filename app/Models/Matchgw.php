@@ -10,6 +10,7 @@ class Matchgw extends Model
     protected $fillable = [
         'gwschedule_id',
         'team_id',
+        'isActive'
     ];
 
     public function team(){
