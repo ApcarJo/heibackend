@@ -94,12 +94,28 @@ Route::middleware('auth:api')->group(function () {
 
     //USERTEAM CONTROLLER
     Route::get('alluserteam', [userTeamController::class, 'index']);
-    Route::post('byuserteam', [userTeamController::class, 'byGWSchedule']);
+    Route::post('bygwschedule', [userTeamController::class, 'byGWSchedule']);
     Route::post('chooseuserteam', [userTeamController::class, 'byId']);
     Route::get('activeuserteam', [userTeamController::class, 'showActive']);
     Route::delete('deleteuserteam', [userTeamController::class, 'destroy']);
     Route::put('modifyuserteam', [userTeamController::class, 'update']);
     Route::post('createuserteam', [userTeamController::class, 'create']);
 
+
+    //GW SCHEDULE CONTROLLER
+    Route::get('allgwschedules', [GwscheduleController::class, 'index']);
+    Route::post('creategwschedule', [GwscheduleController::class, 'create']);
+    Route::post('choosegwschedule', [GwscheduleController::class, 'byId']);
+    Route::post('gwscheduleselector', [GwscheduleController::class, 'selector']);
+    Route::get('activegwschedule', [GwscheduleController::class, 'showActive']);
+    Route::post('findgwschedule', [GwscheduleController::class, 'byName']);
+    Route::post('findbydateschedule', [GwscheduleController::class, 'byDate']);
+    Route::put('modifygwschedule', [GwscheduleController::class, 'update']);
+    
+    Route::delete('deletegwschedule', [GwscheduleController::class, 'destroy']);
+    
+    
+    
+    Route::post('archivegwschedule', [GwscheduleController::class, 'archive']);
     // return $request->user();
 });

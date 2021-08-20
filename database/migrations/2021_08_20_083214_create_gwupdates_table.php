@@ -21,6 +21,7 @@ class CreateGwupdatesTable extends Migration
             $table->text('infoUpdate')->nullable();
             $table->string('img')->nullable();
             $table->boolean('isActive')->default(true);
+            $table->boolean('isArchive')->default(false);
             $table->timestamps();
         });
     }

@@ -23,6 +23,8 @@ class CreateGwschedulesTable extends Migration
             // $table->foreignId('userTeam_id')->references('id')->on('user_teams');
             // $table->foreignId('vanGW_id')->references('id')->on('van_gws');
             $table->boolean('isMd-1')->default(false);
+            $table->boolean('isActive')->default(true);
+            $table->boolean('isArchive')->default(false);
             $table->string('vlan')->default(false);
             $table->string('port')->default(false);
             $table->timestamps();

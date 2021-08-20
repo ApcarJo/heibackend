@@ -15,6 +15,7 @@ class Gwupdate extends Model
         'infoUpdate',
         'img',
         'isActive',
+        'isArchive'
     ];
 
 

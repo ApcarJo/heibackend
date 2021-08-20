@@ -19,6 +19,8 @@ class Gwschedule extends Model
         'isMd-1',
         'vlan',
         'port',
+        'isActive',
+        'isArchive',
 
     ];
 
