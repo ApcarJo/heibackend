@@ -19,6 +19,7 @@ class CreateUsergwsTable extends Migration
             $table->foreignId('userTeam_id')->references('id')->on('user_teams');
             $table->date('timeStart');
             $table->date('timeFinish');
+            $table->boolean('isActive')->default(true);
             $table->string('MD');
         });
     }

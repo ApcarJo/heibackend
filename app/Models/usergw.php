@@ -9,10 +9,12 @@ class usergw extends Model
 {
 
     protected $fillable = [
+        'GW',
         'user_id',
         'userTeam_id',
         'timeStart',
         'timeFinish',
+        'isActive',
         'MD'
     ];
 

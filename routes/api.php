@@ -15,6 +15,7 @@ use App\Http\Controllers\GwscheduleController;
 use App\Http\Controllers\GwupdateController;
 use App\Http\Controllers\MatchgwController;
 use App\Http\Controllers\AssetController;
+use App\Http\Controllers\UsergwController;
 
 /*
 |--------------------------------------------------------------------------
@@ -136,10 +137,22 @@ Route::middleware('auth:api')->group(function () {
     Route::post('creatematchgw', [MatchgwController::class, 'create']);
     Route::post('choosematchgw', [MatchgwController::class, 'byId']);
     Route::post('bygwschedule', [MatchgwController::class, 'byGwschedule']);
-    Route::get('activegwschedule', [MatchgwController::class, 'showActive']);
+    Route::get('activematchgw', [MatchgwController::class, 'showActive']);
     Route::post('byteamid', [MatchgwController::class, 'byName']);
     Route::put('modifymatchgw', [MatchgwController::class, 'update']);
     Route::delete('deletematchgw', [MatchgwController::class, 'destroy']);
+
+    //USER GW CONTROLLER
+    Route::get('allusergws', [UsergwController::class, 'index']);
+    Route::post('createusergw', [UsergwController::class, 'create']);
+    Route::post('chooseusergw', [UsergwController::class, 'byId']);
+    Route::post('byuserteam', [UsergwController::class, 'byUserTeam']);
+    Route::get('activeuser', [UsergwController::class, 'showActive']);
+    Route::post('byuserid', [UsergwController::class, 'byuserId']);
+    Route::post('byallgw', [UsergwController::class, 'byAllGW']);
+    Route::post('bygw', [UsergwController::class, 'byGW']);
+    Route::put('modifyusergw', [UsergwController::class, 'update']);
+    Route::delete('deleteusergw', [UsergwController::class, 'destroy']);
 
     // return $request->user();
 });
