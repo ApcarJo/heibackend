@@ -15,7 +15,7 @@ class CreateAssetsTable extends Migration
     {
         Schema::create('assets', function (Blueprint $table) {
             $table->id();
-            $table->string('customNote')->require();
+            $table->string('name')->require();
             $table->string('model')->require();
             $table->string('type')->nullable();
             $table->string('serialNumber')->nullable();

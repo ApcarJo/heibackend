@@ -15,7 +15,7 @@ class CreateVansTable extends Migration
     {
         Schema::create('vans', function (Blueprint $table) {
             $table->id();
-            $table->string('customNote')->require();
+            $table->string('vanNumber')->require();
             $table->string('model');
             $table->string('licensePlate')->require();
             $table->string('crossCheckCode')->nullable();

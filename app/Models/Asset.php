@@ -10,14 +10,13 @@ class Asset extends Model
 
     protected $fillable = [
         'name',
-        'customNote',
+        'type',
         'model',
         'serialNumber',
         'year',
         'warrantyExpiracyDate',
         'quantity',
         'crossCheckCode',
-        'type',
         'user_id',
         'loomNumber',
         'kit_van_id',
