@@ -89,8 +89,8 @@ class GwscheduleController extends Controller
             ], 200);
         } else {
             return response()->json([
-                'success'=>false,
-                'message'=>'gwschedule not found'
+                'success' => false,
+                'message' => 'gwschedule not found'
             ], 400);
         }
     }
@@ -140,48 +140,9 @@ class GwscheduleController extends Controller
      * @param  \App\Models\gwschedule  $gwschedule
      * @return \Illuminate\Http\Response
      */
-    public function archive(Request $request)
-    {
-        $user = auth()->user();
-
-        if (($user->isAdmin)||($user->id==$request->user_id)) {
-
-            $deactive = gwschedule::find($request->gwschedule_id);
-
-            if ($deactive) {
-
-                $deactive->isActive = 0;
-                $deactive->save();
-
-
-                return response()->json([
-                    'success' => true,
-                    'data' => $deactive,
-                    'message' => 'Gwschedule archived'
-                ], 200);
-            } else {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Gwschedule not found'
-                ], 500);
-            }
-        } else {
-            return response()->json([
-                'success' => false,
-                'message' => "You don't have permissions"
-            ], 400);
-        }
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\gwschedule  $gwschedule
-     * @return \Illuminate\Http\Response
-     */
     public function byName(Request $request)
     {
-        $gwschedule = gwschedule::where('Competition', 'LIKE', '%'.$request->competition.'%')->get();
+        $gwschedule = gwschedule::where('Competition', 'LIKE', '%' . $request->competition . '%')->get();
         if (!$gwschedule->isEmpty()) {
             return response()->json([
                 'success' => true,
@@ -189,8 +150,8 @@ class GwscheduleController extends Controller
             ], 200);
         } else {
             return response()->json([
-                'success'=>false,
-                'message'=>'This gwschedule does not exist'
+                'success' => false,
+                'message' => 'This gwschedule does not exist'
             ], 400);
         }
     }
@@ -211,8 +172,8 @@ class GwscheduleController extends Controller
             ], 200);
         } else {
             return response()->json([
-                'success'=>false,
-                'message'=>'This gwschedule does not exist'
+                'success' => false,
+                'message' => 'This gwschedule does not exist'
             ], 400);
         }
     }
@@ -290,4 +251,44 @@ class GwscheduleController extends Controller
             ], 400);
         }
     }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\gwschedule  $gwschedule
+     * @return \Illuminate\Http\Response
+     */
+    public function archive(Request $request)
+    {
+        $user = auth()->user();
+
+        if (($user->isAdmin) || ($user->id == $request->user_id)) {
+
+            $deactive = gwschedule::find($request->gwschedule_id);
+
+            if ($deactive) {
+
+                $deactive->isActive = 0;
+                $deactive->save();
+
+
+                return response()->json([
+                    'success' => true,
+                    'data' => $deactive,
+                    'message' => 'Gwschedule archived'
+                ], 200);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Gwschedule not found'
+                ], 500);
+            }
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => "You don't have permissions"
+            ], 400);
+        }
+    }
 }
+

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AssetController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -9,6 +10,9 @@ use App\Http\Controllers\VanController;
 use App\Http\Controllers\VanGWController;
 use App\Http\Controllers\StadiumController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\UserTeamController;
+use App\Http\Controllers\GwscheduleController;
+use App\Http\Controllers\GwupdateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -93,7 +97,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('archivegwupdate', [GwupdateController::class, 'archive']);
 
     //USERTEAM CONTROLLER
-    Route::get('alluserteam', [userTeamController::class, 'index']);
+    Route::get('alluserteam', [UserTeamController::class, 'index']);
     Route::post('bygwschedule', [userTeamController::class, 'byGWSchedule']);
     Route::post('chooseuserteam', [userTeamController::class, 'byId']);
     Route::get('activeuserteam', [userTeamController::class, 'showActive']);
@@ -111,11 +115,19 @@ Route::middleware('auth:api')->group(function () {
     Route::post('findgwschedule', [GwscheduleController::class, 'byName']);
     Route::post('findbydateschedule', [GwscheduleController::class, 'byDate']);
     Route::put('modifygwschedule', [GwscheduleController::class, 'update']);
-    
     Route::delete('deletegwschedule', [GwscheduleController::class, 'destroy']);
-    
-    
-    
     Route::post('archivegwschedule', [GwscheduleController::class, 'archive']);
+
+    //ASSET CONTROLLER
+    Route::get('allassets', [AssetController::class, 'index']);
+    Route::post('createasset', [AssetController::class, 'create']);
+    Route::post('chooseasset', [AssetController::class, 'byId']);
+    Route::post('byKitVan', [AssetController::class, 'bykitVan']);
+    Route::post('findasset', [AssetController::class, 'byName']);
+    Route::post('bymodel', [AssetController::class, 'byModel']);
+    Route::post('byWarrantyYear', [AssetController::class, 'byWarrantyYear']);
+    Route::put('modifyasset', [AssetController::class, 'update']);
+    Route::delete('deleteasset', [AssetController::class, 'destroy']);
+
     // return $request->user();
 });
