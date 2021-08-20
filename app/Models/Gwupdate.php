@@ -9,15 +9,11 @@ class Gwupdate extends Model
 {
 
     protected $fillable = [
-        'name',
         'date',
-        'generalInfo',
-        'technicalUpdate',
-        'hardwareUpdate',
-        'operationalUpdate',
-        'logisticsUpdate',
-        'usefullInformation',
-        'links',
+        'title',
+        'roles',
+        'infoUpdate',
+        'img',
         'isActive',
     ];
 

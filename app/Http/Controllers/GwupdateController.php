@@ -14,7 +14,22 @@ class GwupdateController extends Controller
      */
     public function index()
     {
-        //
+        $user = auth()->user();
+
+        if ($user) {
+
+            $allGwupdates = Gwupdate::all();
+
+            return response()->json([
+                'success' => true,
+                'data' => $allGwupdates,
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'You have no permissions'
+            ], 401);
+        }
     }
 
     /**
@@ -22,64 +37,196 @@ class GwupdateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $user = auth()->user();
+
+        if ($user) {
+            $this->validate($request, [
+                'date' => 'required',
+                'title' => 'required',
+                'roles' => 'required',
+            ]);
+
+            $Gwupdate = Gwupdate::create([
+                'date' => $request->date,
+                'title' => $request->title,
+                'roles' => $request->roles
+            ]);
+
+            if ($Gwupdate) {
+                return response()->json([
+                    'success' => true,
+                    'data' => $Gwupdate
+                ]);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Gwupdate not added'
+                ], 500);
+            };
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'You need to log in first'
+            ]);
+        }
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Gwupdate  $Gwupdate
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function byId(Request $request)
     {
-        //
+        $Gwupdate = Gwupdate::where('id', '=', $request->Gwupdate_id)->get();
+        if (!$Gwupdate->isEmpty()) {
+            return response()->json([
+                'success' => true,
+                'data' => $Gwupdate
+            ], 200);
+        } else {
+            return response()->json([
+                'success'=>false,
+                'message'=>'Gwupdate not found'
+            ], 400);
+        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Gwupdate  $gwupdate
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function show(Gwupdate $gwupdate)
+    public function selector(Request $request)
     {
-        //
+        $Gwupdate = Gwupdate::where('customNote', '=', $request->customNote)->get();
+
+        if (!$Gwupdate->isEmpty()) {
+            return response()->json([
+                'success' => true,
+                'data' => $Gwupdate
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'This Gwupdate does not exist'
+            ], 400);
+        }
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Gwupdate  $Gwupdate
+     * @return \Illuminate\Http\Response
+     */
+    public function showActive()
+    {
+        $allGwupdates = Gwupdate::where('isActive', 1)->get();
+
+        return response()->json([
+            'success' => true,
+            'data' => $allGwupdates,
+        ], 200);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Gwupdate  $gwupdate
+     * @param  \App\Models\Gwupdate  $Gwupdate
      * @return \Illuminate\Http\Response
      */
-    public function edit(Gwupdate $gwupdate)
+    public function byName(Request $request)
     {
-        //
+        $Gwupdate = Gwupdate::where('customNote', 'LIKE', '%'.$request->customName.'%')->get();
+        if (!$Gwupdate->isEmpty()) {
+            return response()->json([
+                'success' => true,
+                'data' => $Gwupdate
+            ], 200);
+        } else {
+            return response()->json([
+                'success'=>false,
+                'message'=>'This Gwupdate does not exist'
+            ], 400);
+        }
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Gwupdate  $gwupdate
+     * @param  \App\Models\Gwupdate  $Gwupdate
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Gwupdate $gwupdate)
+    public function update(Request $request, Gwupdate $Gwupdate)
     {
-        //
+        $user = auth()->user();
+
+        if ($user->isAdmin) {
+
+            $Gwupdate = Gwupdate::find($request->Gwupdate_id);
+
+            if ($Gwupdate) {
+
+                $update = $Gwupdate->fill($request->all())->save();
+
+                if ($update) {
+                    return response()->json([
+                        'success' => true,
+                        'message' => 'Gwupdate updated',
+                    ], 200);
+                } else {
+                    return response()->json([
+                        'success' => false,
+                        'message' => 'Gwupdate not updated'
+                    ], 400);
+                }
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Gwupdate not found'
+                ], 400);
+            }
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Gwupdate  $gwupdate
+     * @param  \App\Models\Gwupdate  $Gwupdate
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Gwupdate $gwupdate)
+    public function destroy(Request $request)
     {
-        //
+        $user = auth()->user();
+
+        if ($user->isAdmin) {
+
+            $Gwupdate = Gwupdate::where('id', '=', $request->Gwupdate_id)->delete();
+
+            if ($Gwupdate) {
+
+                return response()->json([
+                    'success' => true,
+                    'data' => $Gwupdate,
+                    'message' => 'Gwupdate deleted'
+                ], 200);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Gwupdate not found'
+                ], 500);
+            }
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => "You don't have permissions"
+            ], 400);
+        }
     }
 }

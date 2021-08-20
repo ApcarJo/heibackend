@@ -81,6 +81,17 @@ Route::middleware('auth:api')->group(function () {
     Route::post('createteam', [TeamController::class, 'create']);
     Route::post('teamselector', [TeamController::class, 'selector']);
 
+    //GWUPDATE CONTROLLER
+    Route::get('allgwupdates', [GwupdateController::class, 'index']);
+    Route::post('findgwupdate', [GwupdateController::class, 'byName']);
+    Route::post('choosegwupdate', [GwupdateController::class, 'byId']);
+    Route::get('activegwupdate', [GwupdateController::class, 'showActive']);
+    Route::delete('deletegwupdate', [GwupdateController::class, 'destroy']);
+    Route::put('modifygwupdate', [GwupdateController::class, 'update']);
+    Route::post('creategwupdate', [GwupdateController::class, 'create']);
+    Route::post('gwupdateselector', [GwupdateController::class, 'selector']);
+    Route::post('archivegwupdate', [GwupdateController::class, 'archive']);
+
 
     // return $request->user();
 });

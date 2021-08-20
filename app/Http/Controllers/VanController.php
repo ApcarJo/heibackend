@@ -43,13 +43,13 @@ class VanController extends Controller
 
         if ($user) {
             $this->validate($request, [
-                'customNote' => 'required',
+                'vanNumber' => 'required',
                 'model' => 'required',
                 'licensePlate' => 'required',
             ]);
 
             $van = Van::create([
-                'customNote' => $request->customNote,
+                'vanNumber' => $request->vanNumber,
                 'model' => $request->model,
                 'licensePlate' => $request->licensePlate
             ]);
@@ -103,7 +103,7 @@ class VanController extends Controller
      */
     public function selector(Request $request)
     {
-        $van = Van::where('customNote', '=', $request->customNote)->get();
+        $van = Van::where('vanNumber', '=', $request->vanNumber)->get();
 
         if (!$van->isEmpty()) {
             return response()->json([
@@ -142,7 +142,7 @@ class VanController extends Controller
      */
     public function byName(Request $request)
     {
-        $van = Van::where('customNote', 'LIKE', '%'.$request->customName.'%')->get();
+        $van = Van::where('vanNumber', 'LIKE', '%'.$request->vanNumber.'%')->get();
         if (!$van->isEmpty()) {
             return response()->json([
                 'success' => true,

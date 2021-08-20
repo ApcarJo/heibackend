@@ -15,7 +15,6 @@ class CreateGwupdatesTable extends Migration
     {
         Schema::create('gwupdates', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->require();
             $table->date('date')->nullable();
             $table->string('title')->nullable();
             $table->string('roles')->nullable();
