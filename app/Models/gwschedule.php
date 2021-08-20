@@ -11,7 +11,6 @@ class Gwschedule extends Model
         'GW',
         'Competition',
         'date',
-        'Matchgw_id',
         'kickOff',
         'stadium_id',
         'userTeam_id',

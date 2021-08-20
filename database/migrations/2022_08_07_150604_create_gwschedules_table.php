@@ -16,12 +16,10 @@ class CreateGwschedulesTable extends Migration
         Schema::create('gwschedules', function (Blueprint $table) {
             $table->id();
             $table->date('date')->require();
-            $table->string('competition')->require();
-            $table->string('GW')->unique();
-            $table->string('kickOff')->require();
+            $table->string('competition')->default('Liga1');
+            $table->string('GW')->nullable();
+            $table->string('kickOff')->default('21:00');
             $table->foreignId('stadium_id')->references('id')->on('stadia');
-            // $table->foreignId('userTeam_id')->references('id')->on('user_teams');
-            // $table->foreignId('vanGW_id')->references('id')->on('van_gws');
             $table->boolean('isMd-1')->default(false);
             $table->boolean('isActive')->default(true);
             $table->boolean('isArchive')->default(false);
