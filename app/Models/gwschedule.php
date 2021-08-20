@@ -35,7 +35,7 @@ class Gwschedule extends Model
     }
 
     public function vangw(){
-        return $this->hasOne(VanGW::class);
+        return $this->hasOne(Vangw::class);
     }
 
     use HasFactory;

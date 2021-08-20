@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\VanGW;
+use App\Models\Vangw;
+use App\Models\Van;
+use App\Models\Gwschedule;
 use Illuminate\Http\Request;
 
-class VanGWController extends Controller
+class VangwController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -62,8 +64,11 @@ class VanGWController extends Controller
     public function create(Request $request)
     {
         $user = auth()->user();
+        $van = Van::where('id', '=', $request->van_id)->get();
+        // $gwschedule = Gwschedule::where('id', '=', $request->gwschedule_id)->get();
 
-        if ($user) {
+        if (($user->isAdmin)&&($van)) {
+        // if (($user->isAdmin)&&(($van)&&($gwschedule))) {
             $this->validate($request, [
                 'gwschedule_id' => 'required',
                 'van_id' => 'required'
@@ -107,12 +112,40 @@ class VanGWController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\VanGW  $vanGW
+     * @param  \App\Models\Vangw  $vanGW
      * @return \Illuminate\Http\Response
      */
-    public function show(VanGW $vanGW)
+    public function showActive()
     {
-        //
+        $allActiveVangw = Vangw::where('isActive', 1)->get();
+
+        return response()->json([
+            'success' => true,
+            'data' => $allActiveVangw,
+        ], 200);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Vangw  $vanGW
+     * @return \Illuminate\Http\Response
+     */
+    public function selector(Request $request)
+    {
+        $vangw = Vangw::where('gwschedule_id', '=', $request->gwschedule_id)->get();
+
+        if (!$vangw->isEmpty()) {
+            return response()->json([
+                'success' => true,
+                'data' => $vangw
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'This vangw does not exist'
+            ], 400);
+        }
     }
 
     /**
@@ -121,9 +154,22 @@ class VanGWController extends Controller
      * @param  \App\Models\VanGW  $vanGW
      * @return \Illuminate\Http\Response
      */
-    public function edit(VanGW $vanGW)
+    public function findbygwschedule(Request $request)
     {
-        //
+        $allgw = Vangw::where('gwschedule_id', '=', $request->gwschedule_id)->get();
+
+
+        if (!$allgw->isEmpty()) {
+            return response()->json([
+                'success' => true,
+                'data' => $allgw
+            ], 200);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'This vangw does not exist'
+            ], 400);
+        }
     }
 
     /**
@@ -201,5 +247,4 @@ class VanGWController extends Controller
             ], 400);
         }
     }
-    
 }

@@ -42,11 +42,14 @@ Route::middleware('auth:api')->group(function () {
 
 
     //VAN_GW CONTROLLER
-    Route::get('allvangw', [VanGWController::class, 'index']);
-    Route::post('choosevangw', [VanGWController::class, 'byId']);
-    Route::delete('deletevangw', [VanGWController::class, 'destroy']);
-    Route::put('modifyvangw', [VanGWController::class, 'update']);
-    Route::post('createvangw', [VanGWController::class, 'create']);
+    Route::get('allvangw', [VangwController::class, 'index']);
+    Route::post('choosevangw', [VangwController::class, 'byId']);
+    Route::post('vangwbygwschedule', [VangwController::class, 'findbygwschedule']);
+    Route::delete('deletevangw', [VangwController::class, 'destroy']);
+    Route::put('modifyvangw', [VangwController::class, 'update']);
+    Route::post('createvangw', [VangwController::class, 'create']);
+    Route::post('vangwselector', [VangwController::class, 'selector']);
+    Route::get('activevangw', [VangwController::class, 'showActive']);
 
     //VAN CONTROLLER
     Route::get('allvans', [VanController::class, 'index']);

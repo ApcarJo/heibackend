@@ -33,7 +33,7 @@ class Van extends Model
     }
 
     public function vangw(){
-        return $this->hasMany(VanGW::class);
+        return $this->hasMany(Vangw::class);
     }
 
     use HasFactory;

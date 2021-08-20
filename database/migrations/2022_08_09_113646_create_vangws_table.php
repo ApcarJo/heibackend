@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVanGWSTable extends Migration
+class CreateVangwsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateVanGWSTable extends Migration
      */
     public function up()
     {
-        Schema::create('van_gws', function (Blueprint $table) {
+        Schema::create('vangws', function (Blueprint $table) {
             $table->id();
-            $table->string('vanNumber');
             $table->foreignId('gwschedule_id')->references('id')->on('gwschedules');
             $table->foreignId('van_id')->references('id')->on('vans');
-        
+            $table->boolean('isActive')->default(true);
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateVanGWSTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('van_g_w_s');
+        Schema::dropIfExists('vangws');
     }
 }
