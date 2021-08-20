@@ -103,7 +103,7 @@ class GwupdateController extends Controller
      */
     public function selector(Request $request)
     {
-        $Gwupdate = Gwupdate::where('customNote', '=', $request->customNote)->get();
+        $Gwupdate = Gwupdate::where('title', '=', $request->title)->get();
 
         if (!$Gwupdate->isEmpty()) {
             return response()->json([
@@ -142,7 +142,7 @@ class GwupdateController extends Controller
      */
     public function byName(Request $request)
     {
-        $Gwupdate = Gwupdate::where('customNote', 'LIKE', '%'.$request->customName.'%')->get();
+        $Gwupdate = Gwupdate::where('title', 'LIKE', '%'.$request->title.'%')->get();
         if (!$Gwupdate->isEmpty()) {
             return response()->json([
                 'success' => true,
