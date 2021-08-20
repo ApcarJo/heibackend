@@ -92,6 +92,14 @@ Route::middleware('auth:api')->group(function () {
     Route::post('gwupdateselector', [GwupdateController::class, 'selector']);
     Route::post('archivegwupdate', [GwupdateController::class, 'archive']);
 
+    //USERTEAM CONTROLLER
+    Route::get('alluserteam', [userTeamController::class, 'index']);
+    Route::post('byuserteam', [userTeamController::class, 'byGWSchedule']);
+    Route::post('chooseuserteam', [userTeamController::class, 'byId']);
+    Route::get('activeuserteam', [userTeamController::class, 'showActive']);
+    Route::delete('deleteuserteam', [userTeamController::class, 'destroy']);
+    Route::put('modifyuserteam', [userTeamController::class, 'update']);
+    Route::post('createuserteam', [userTeamController::class, 'create']);
 
     // return $request->user();
 });

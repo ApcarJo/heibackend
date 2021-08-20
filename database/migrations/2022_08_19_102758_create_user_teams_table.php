@@ -17,6 +17,7 @@ class CreateUserTeamsTable extends Migration
             $table->id();
             $table->foreignId('gwschedule_id')->references('id')->on('gwschedules');
             $table->foreignId('user_owner_id')->references('id')->on('users');
+            $table->boolean('isActive')->default(true);
             $table->timestamps();
         });
     }

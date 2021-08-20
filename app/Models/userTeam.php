@@ -10,7 +10,8 @@ class userTeam extends Model
 
     protected $fillable=[
         'gwschedule_id',
-        'user_owner_id'
+        'user_owner_id',
+        'isActive'
     ];
 
     public function usergw(){
