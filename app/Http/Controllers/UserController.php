@@ -107,7 +107,7 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function showActive(Request $request)
+    public function showActive()
     {
         $allUsers = User::where('isActive', 1)->get();
 

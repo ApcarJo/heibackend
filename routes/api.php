@@ -8,6 +8,7 @@ use App\Http\Controllers\PassportAuthController;
 use App\Http\Controllers\VanController;
 use App\Http\Controllers\VanGWController;
 use App\Http\Controllers\StadiumController;
+use App\Http\Controllers\TeamController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +67,16 @@ Route::middleware('auth:api')->group(function () {
     Route::put('modifystadiums', [StadiumController::class, 'update']);
     Route::post('createstadiums', [StadiumController::class, 'create']);
     Route::post('stadiumselector', [StadiumController::class, 'selector']);
+
+    //TEAM CONTROLLER
+    Route::get('allteams', [TeamController::class, 'index']);
+    Route::post('findteam', [TeamController::class, 'byName']);
+    Route::post('chooseteam', [TeamController::class, 'byId']);
+    Route::get('activeteam', [TeamController::class, 'showActive']);
+    Route::delete('deleteteam', [TeamController::class, 'destroy']);
+    Route::put('modifyteam', [TeamController::class, 'update']);
+    Route::post('createteam', [TeamController::class, 'create']);
+    Route::post('teamselector', [TeamController::class, 'selector']);
 
 
     // return $request->user();

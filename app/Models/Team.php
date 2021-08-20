@@ -16,6 +16,7 @@ class Team extends Model
         'isSC',
         'isCDR',
         'stadium_id',
+        // 'isActive'
     ];
 
     public function stadium(){
