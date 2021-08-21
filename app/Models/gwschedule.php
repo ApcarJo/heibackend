@@ -13,9 +13,9 @@ class Gwschedule extends Model
         'date',
         'kickOff',
         'stadium_id',
-        'userTeam_id',
-        'matchgw_id',
-        'vanGW_id',
+        // 'userTeam_id',
+        // 'matchgw_id'
+        // 'vanGW_id',
         'isMd-1',
         'vlan',
         'port',
@@ -25,19 +25,19 @@ class Gwschedule extends Model
     ];
 
     public function stadium(){
-        return $this->hasMany(stadium::class);
+        return $this->belongsTo(stadium::class);
     }
 
     public function matchgw(){
-        return $this->hasMany(Matchgw::class);
+        return $this->hasOne(Matchgw::class);
     }
 
     public function userTeam(){
-        return $this->hasMany(userTeam::class);
+        return $this->hasOne(userTeam::class);
     }
 
     public function vangw(){
-        return $this->hasMany(Vangw::class);
+        return $this->hasOne(Vangw::class);
     }
 
     use HasFactory;

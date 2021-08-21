@@ -45,12 +45,15 @@ class GwscheduleController extends Controller
             $this->validate($request, [
                 'date' => 'required',
                 'competition' => 'required',
+                'stadium_id',
+                'GW' => 'required'
             ]);
 
             $gwschedule = gwschedule::create([
                 'date' => $request->date,
                 'competition' => $request->competition,
-                'matchgw_id' => $request->matchgw_id
+                'GW' => $request->gw,
+                'stadium_id' => $request->stadium_id
             ]);
 
             if ($gwschedule) {

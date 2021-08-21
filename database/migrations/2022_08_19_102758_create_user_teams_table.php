@@ -15,7 +15,7 @@ class CreateUserTeamsTable extends Migration
     {
         Schema::create('user_teams', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('gwschedule_id')->references('id')->on('gwschedules');
+            $table->foreignId('gwschedule_id')->references('id')->on('gwschedules')->nullable();
             $table->foreignId('user_owner_id')->references('id')->on('users');
             $table->boolean('isActive')->default(true);
             $table->timestamps();

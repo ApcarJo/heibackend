@@ -41,12 +41,13 @@ class UserController extends Controller
      */
     public function byId(Request $request)
     {
-        $user = User::where('id', '=', $request->user_id)->get();
-        if (!$user->isEmpty()) {
+        $user = User::find($request->user_id);
+        if ($user) {
             return response()->json([
                 'success' => true,
                 'data' => $user
             ], 200);
+
         } else {
             return response()->json([
                 'success'=>false,
@@ -134,17 +135,17 @@ class UserController extends Controller
 
             if ($modifyuser) {
 
-                // $update = $modifyuser->fill($request->all())->save();
-                $update = $modifyuser->fill([
-                    'phone'=>$request->phone,
-                    'picture'=>$request->picture,
-                    'postalcode'=>$request->postalcode,
-                    'address'=>$request->address,
-                    'city'=>$request->city,
-                    'nif'=>$request->nif,
-                    'isActive'=>$request->isActive,
-                    'password'=>bcrypt($request->password)
-                ])->save();
+                $update = $modifyuser->fill($request->all())->save();
+                // $update = $modifyuser->fill([
+                //     'phone'=>$request->phone,
+                //     'picture'=>$request->picture,
+                //     'postalcode'=>$request->postalcode,
+                //     'address'=>$request->address,
+                //     'city'=>$request->city,
+                //     'nif'=>$request->nif,
+                //     'isActive'=>$request->isActive,
+                //     'password'=>bcrypt($request->password)
+                // ])->save();
 
                 if ($update) {
                     return response()->json([
