@@ -17,9 +17,7 @@ class Asset extends Model
         'warrantyExpiracyDate',
         'quantity',
         'crossCheckCode',
-        'user_id',
-        'loomNumber',
-        'kit_van_id',
+        // 'kit_van_id',
     ];
     
     public function van(){

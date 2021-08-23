@@ -46,19 +46,32 @@ class AssetController extends Controller
                 'name' => 'required',
                 'model' => 'required',
                 'type' => 'required',
+                // 'kit_van_id' => 'required',
+                'serialNumber',
+                'year',
+                'warrantyExpiracyDate',
+                'quantity',
+                'crossCheckCode',
             ]);
 
             $Asset = Asset::create([
                 'name' => $request->name,
                 'model' => $request->model,
-                'type' => $request->type
+                'type' => $request->type,
+                // 'kit_van_id' => $request->kit_van_id,
+                'serialNumber' => $request->serialNumber,
+                'year' => $request->year,
+                'warrantyExpiracyDate' => $request->warrantyExpiracyDate,
+                'quantity' => $request->quantity,
+                'crossCheckCode' => $request->crossCheckCode
+
             ]);
 
             if ($Asset) {
                 return response()->json([
                     'success' => true,
                     'data' => $Asset
-                ]);
+                ], 200);
             } else {
                 return response()->json([
                     'success' => false,

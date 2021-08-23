@@ -17,7 +17,7 @@ class CreateGwschedulesTable extends Migration
             $table->id();
             $table->date('date')->require();
             $table->string('competition')->default('Liga1');
-            $table->string('GW')->require();
+            $table->string('GW')->nullable();
             $table->string('kickOff')->default('21:00');
             $table->foreignId('stadium_id')->references('id')->on('stadia')->nullable();
             // $table->foreignId('userTeam_id')->references('id')->on('user_teams')->nullable();

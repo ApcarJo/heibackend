@@ -23,9 +23,7 @@ class CreateAssetsTable extends Migration
             $table->date('warrantyExpiracyDate')->nullable();
             $table->integer('quantity')->nullable();
             $table->string('crossCheckCode')->nullable();
-            $table->foreignId('user_id')->references('id')->on('users');
-            $table->string('loomNumber');
-            $table->foreignId('kit_van_id')->references('id')->on('vans');
+            // $table->foreignId('kit_van_id')->nullable()->constrained('vans');
         
             $table->timestamps();
         });

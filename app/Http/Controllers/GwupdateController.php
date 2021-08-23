@@ -81,8 +81,8 @@ class GwupdateController extends Controller
      */
     public function byId(Request $request)
     {
-        $Gwupdate = Gwupdate::where('id', '=', $request->Gwupdate_id)->get();
-        if (!$Gwupdate->isEmpty()) {
+        $Gwupdate = Gwupdate::find($request->Gwupdate_id);
+        if ($Gwupdate) {
             return response()->json([
                 'success' => true,
                 'data' => $Gwupdate
@@ -207,7 +207,7 @@ class GwupdateController extends Controller
 
         if ($user->isAdmin) {
 
-            $Gwupdate = Gwupdate::where('id', '=', $request->Gwupdate_id)->delete();
+            $Gwupdate = Gwupdate::find($request->Gwupdate_id)->delete();
 
             if ($Gwupdate) {
 

@@ -33,9 +33,11 @@ Route::post('login', [PassportAuthController::class, 'login']);
 
 
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
-    
-    
+  
+        
+
 Route::middleware('auth:api')->group(function () {
+
 
     //USER CONTROLLER
     Route::get('allusers', [UserController::class, 'index']);
@@ -153,6 +155,6 @@ Route::middleware('auth:api')->group(function () {
     Route::post('bygw', [UsergwController::class, 'byGW']);
     Route::put('modifyusergw', [UsergwController::class, 'update']);
     Route::delete('deleteusergw', [UsergwController::class, 'destroy']);
-
+    
     // return $request->user();
 });
