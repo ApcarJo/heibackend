@@ -135,6 +135,22 @@ class GwupdateController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Gwupdate  $Gwupdate
+     * @return \Illuminate\Http\Response
+     */
+    public function showArchive()
+    {
+        $allGwupdates = Gwupdate::where('isArchive', 1)->get();
+
+        return response()->json([
+            'success' => true,
+            'data' => $allGwupdates,
+        ], 200);
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Gwupdate  $Gwupdate
@@ -152,6 +168,40 @@ class GwupdateController extends Controller
             return response()->json([
                 'success'=>false,
                 'message'=>'This Gwupdate does not exist'
+            ], 400);
+        }
+    }
+
+    public function archive (Request $request)
+    {
+        $user = auth()->user();
+
+        if ($user->isAdmin) {
+
+            $archive = Gwupdate::find($request->gwupdate_id);
+
+            if ($archive) {
+
+                $archive->isArchive = 1;
+                $archive->isActive = 0;
+                $archive->save();
+
+
+                return response()->json([
+                    'success' => true,
+                    'data' => $archive,
+                    'message' => 'User archived'
+                ], 200);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'User not found'
+                ], 500);
+            }
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => "You don't have permissions"
             ], 400);
         }
     }

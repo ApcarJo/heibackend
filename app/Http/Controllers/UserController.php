@@ -57,6 +57,29 @@ class UserController extends Controller
     }
 
     /**
+     * Display the specified resource by id.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function userrole (Request $request)
+    {
+        $user = User::where("role", "=", $request->role)->get();
+        if ($user) {
+            return response()->json([
+                'success' => true,
+                'data' => $user
+            ], 200);
+
+        } else {
+            return response()->json([
+                'success'=>false,
+                'message'=>'User not found'
+            ], 400);
+        }
+    }
+
+    /**
      * Display the specified resource by name.
      *
      * @param  \App\Models\User  $user
@@ -119,6 +142,22 @@ class UserController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function showarchive()
+    {
+        $allUsers = User::where('isArchive', 1)->get();
+
+        return response()->json([
+            'success' => true,
+            'data' => $allUsers,
+        ], 200);
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -173,24 +212,25 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function archive(Request $request)
+    public function archive (Request $request)
     {
         $user = auth()->user();
 
         if (($user->isAdmin)||($user->id==$request->user_id)) {
 
-            $deactive = User::find($request->user_id);
+            $archive = User::find($request->id);
 
-            if ($deactive) {
+            if ($archive) {
 
-                $deactive->isActive = 0;
-                $deactive->save();
+                $archive->isArchive = 1;
+                $archive->isActive = 0;
+                $archive->save();
 
 
                 return response()->json([
                     'success' => true,
-                    'data' => $deactive,
-                    'message' => 'User deleted'
+                    'data' => $archive,
+                    'message' => 'User archived'
                 ], 200);
             } else {
                 return response()->json([
@@ -256,7 +296,7 @@ class UserController extends Controller
 
         if ($user->isAdmin) {
 
-            $deleteuser = User::find($request->user_id)->delete();
+            $deleteuser = User::find($request->id)->delete();
 
             if ($deleteuser) {
                 return response()->json([

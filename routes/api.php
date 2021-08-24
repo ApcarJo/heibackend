@@ -45,9 +45,11 @@ Route::middleware('auth:api')->group(function () {
     Route::post('selectuser', [UserController::class, 'userSelector']);
     Route::post('chooseuser', [UserController::class, 'byId']);
     Route::get('activeusers', [UserController::class, 'showActive']);
+    Route::get('findarchiveusers', [UserController::class, 'showarchive']);
     Route::put('archiveuser', [UserController::class, 'archive']);
     Route::delete('deleteuser', [UserController::class, 'destroy']);
     Route::put('modifyuser', [UserController::class, 'update']);
+    Route::post('userrole', [UserController::class, 'userrole']);
 
 
     //VAN_GW CONTROLLER
@@ -95,6 +97,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('findgwupdate', [GwupdateController::class, 'byName']);
     Route::post('choosegwupdate', [GwupdateController::class, 'byId']);
     Route::get('activegwupdate', [GwupdateController::class, 'showActive']);
+    Route::get('showarchived', [GwupdateController::class, 'showArchive']);
     Route::delete('deletegwupdate', [GwupdateController::class, 'destroy']);
     Route::put('modifygwupdate', [GwupdateController::class, 'update']);
     Route::post('creategwupdate', [GwupdateController::class, 'create']);
