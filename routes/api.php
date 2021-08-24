@@ -45,7 +45,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('selectuser', [UserController::class, 'userSelector']);
     Route::post('chooseuser', [UserController::class, 'byId']);
     Route::get('activeusers', [UserController::class, 'showActive']);
-    Route::get('findarchiveusers', [UserController::class, 'showarchive']);
+    Route::get('findarchiveuser', [UserController::class, 'showarchive']);
     Route::put('archiveuser', [UserController::class, 'archive']);
     Route::delete('deleteuser', [UserController::class, 'destroy']);
     Route::put('modifyuser', [UserController::class, 'update']);
@@ -102,7 +102,7 @@ Route::middleware('auth:api')->group(function () {
     Route::put('modifygwupdate', [GwupdateController::class, 'update']);
     Route::post('creategwupdate', [GwupdateController::class, 'create']);
     Route::post('gwupdateselector', [GwupdateController::class, 'selector']);
-    Route::post('archivegwupdate', [GwupdateController::class, 'archive']);
+    Route::put('archivegwupdate', [GwupdateController::class, 'archive']);
 
     //USERTEAM CONTROLLER
     Route::get('alluserteam', [UserTeamController::class, 'index']);
@@ -160,4 +160,6 @@ Route::middleware('auth:api')->group(function () {
     Route::delete('deleteusergw', [UsergwController::class, 'destroy']);
     
     // return $request->user();
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+
 });
