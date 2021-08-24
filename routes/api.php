@@ -31,11 +31,6 @@ use App\Http\Controllers\UsergwController;
 Route::post('register', [PassportAuthController::class, 'register']);
 Route::post('login', [PassportAuthController::class, 'login']);
 
-
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-  
-        
-
 Route::middleware('auth:api')->group(function () {
 
 
@@ -158,8 +153,5 @@ Route::middleware('auth:api')->group(function () {
     Route::post('bygw', [UsergwController::class, 'byGW']);
     Route::put('modifyusergw', [UsergwController::class, 'update']);
     Route::delete('deleteusergw', [UsergwController::class, 'destroy']);
-    
-    // return $request->user();
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 });
