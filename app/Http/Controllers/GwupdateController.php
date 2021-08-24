@@ -178,7 +178,7 @@ class GwupdateController extends Controller
 
         if ($user->isAdmin) {
 
-            $archive = Gwupdate::find($request->gwupdate_id);
+            $archive = Gwupdate::find($request->id);
 
             if ($archive) {
 
@@ -190,12 +190,12 @@ class GwupdateController extends Controller
                 return response()->json([
                     'success' => true,
                     'data' => $archive,
-                    'message' => 'User archived'
+                    'message' => 'GWU archived'
                 ], 200);
             } else {
                 return response()->json([
                     'success' => false,
-                    'message' => 'User not found'
+                    'message' => 'GWU not found'
                 ], 500);
             }
         } else {
