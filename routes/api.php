@@ -27,6 +27,7 @@ use App\Http\Controllers\UsergwController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
 Route::post('register', [PassportAuthController::class, 'register']);
 Route::post('login', [PassportAuthController::class, 'login']);
 

@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'sanctum/csrf-cookie'],
+    'paths' => ['http://heifrontend.heroku.com','api/*', 'sanctum/csrf-cookie'],
 
     'allowed_methods' => ['*'],
 
