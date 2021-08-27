@@ -29,7 +29,7 @@ return [
     'exposed_headers' => ['Access-Control-Allow-Origin'],
     // 'exposed_headers' => [],
 
-    'max_age' => ['86400'],
+    'max_age' => 86400,
 
     'supports_credentials' => true,
 
