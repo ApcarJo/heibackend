@@ -13,6 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+2
+3
+4
+Route::get('/clear-cache', function() {
+    Artisan::call('cache:clear');
+    return "Cache is cleared";
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
