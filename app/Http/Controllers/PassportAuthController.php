@@ -17,7 +17,7 @@ class PassportAuthController extends Controller
             'codename' => 'required|max:3',
             'password' => 'required|min:8',
         ]);
-        
+    
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -30,7 +30,6 @@ class PassportAuthController extends Controller
 
         return response()->json(['token' => $token], 200);
 
-        }
     }
     
     public function login (Request $request)
