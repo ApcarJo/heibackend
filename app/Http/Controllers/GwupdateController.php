@@ -219,7 +219,7 @@ class GwupdateController extends Controller
 
         if ($user->isAdmin) {
 
-            $Gwupdate = Gwupdate::find($request->Gwupdate_id);
+            $Gwupdate = Gwupdate::find($request->gwupdate_id);
 
             if ($Gwupdate) {
 
@@ -240,7 +240,7 @@ class GwupdateController extends Controller
                 return response()->json([
                     'success' => false,
                     'message' => 'Gwupdate not found'
-                ], 400);
+                ], 404);
             }
         }
     }
