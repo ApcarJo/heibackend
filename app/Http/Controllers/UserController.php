@@ -296,7 +296,7 @@ class UserController extends Controller
 
         if ($user->isAdmin) {
 
-            $deleteuser = User::find($request->id)->delete();
+            $deleteuser = User::find($request->user_id)->delete();
 
             if ($deleteuser) {
                 return response()->json([
