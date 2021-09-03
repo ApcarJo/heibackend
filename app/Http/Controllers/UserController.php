@@ -217,17 +217,12 @@ class UserController extends Controller
         $user = auth()->user();
 
         if (($user->isAdmin)||($user->id==$request->id)) {
-
             $archive = User::find($request->id);
-
             if ($archive) {
-
                 $archive->isArchive = 1;
                 $archive->isActive = 0;
                 $archive->isAdmin = 0;
                 $archive->save();
-
-
                 return response()->json([
                     'success' => true,
                     'data' => $archive,
@@ -245,6 +240,38 @@ class UserController extends Controller
                 'message' => "You don't have permissions"
             ], 400);
         }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
+
+    public function destroy (Request $request)
+    {
+        $user = auth()->user();
+        if ($user->isAdmin) {
+            $delete = User::find($request->id);
+            $delete->delete();
+            if ($delete) {
+                return response()->json([
+                    'success' => true,
+                    'message' => 'User deleted'
+                ],200);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'User not found',
+                ], 500);
+            }
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => "You don't have permissions",
+            ], 400);
+        } 
     }
 
     /**
@@ -285,38 +312,4 @@ class UserController extends Controller
             ], 400);
         }
     }
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Request $request)
-    {
-        $user = auth()->user();
-
-        if ($user->isAdmin) {
-
-            $deleteuser = User::find($request->user_id)->delete();
-
-            if ($deleteuser) {
-                return response()->json([
-                    'success' => true,
-                    'data' => $deleteuser,
-                    'message' => 'User deleted'
-                ], 200);
-                } else {
-                    return response()->json([
-                        'success' => false,
-                        'message' => 'User not found'
-                    ], 404);
-                }
-            } else {
-                return response()->json([
-                    'success' => false,
-                    'message' => "You don't have permissions"
-                ], 400);
-            }
-        }
-    }
-?>
+}
