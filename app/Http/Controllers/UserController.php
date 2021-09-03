@@ -224,6 +224,7 @@ class UserController extends Controller
 
                 $archive->isArchive = 1;
                 $archive->isActive = 0;
+                $archive->isAdmin = 0;
                 $archive->save();
 
 
