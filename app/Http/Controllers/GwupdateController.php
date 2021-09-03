@@ -257,7 +257,7 @@ class GwupdateController extends Controller
 
         if ($user->isAdmin) {
 
-            $Gwupdate = Gwupdate::find($request->Gwupdate_id)->delete();
+            $Gwupdate = Gwupdate::find($request->gwupdate_id)->delete();
 
             if ($Gwupdate) {
 
