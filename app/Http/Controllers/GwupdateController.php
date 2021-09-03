@@ -81,7 +81,7 @@ class GwupdateController extends Controller
      */
     public function byId(Request $request)
     {
-        $Gwupdate = Gwupdate::find($request->Gwupdate_id);
+        $Gwupdate = Gwupdate::find($request->gwupdate_id);
         if ($Gwupdate) {
             return response()->json([
                 'success' => true,
