@@ -216,7 +216,7 @@ class UserController extends Controller
     {
         $user = auth()->user();
 
-        if (($user->isAdmin)||($user->id==$request->user_id)) {
+        if (($user->isAdmin)||($user->id==$request->id)) {
 
             $archive = User::find($request->id);
 
