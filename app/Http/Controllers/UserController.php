@@ -253,7 +253,7 @@ class UserController extends Controller
     {
         $user = auth()->user();
         if ($user->isAdmin) {
-            $delete = User::find($request->id);
+            $delete = User::where('id', '=', $request->user_id);
             $delete->delete();
             if ($delete) {
                 return response()->json([
