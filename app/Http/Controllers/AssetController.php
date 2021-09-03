@@ -248,7 +248,7 @@ class AssetController extends Controller
 
         if ($user->isAdmin) {
 
-            $Asset = Asset::where('id', '=', $request->Asset_id)->delete();
+            $Asset = Asset::where('id', '=', $request->asset_id)->delete();
 
             if ($Asset) {
 
