@@ -52,7 +52,8 @@ class GwupdateController extends Controller
             $Gwupdate = Gwupdate::create([
                 'date' => $request->date,
                 'title' => $request->title,
-                'roles' => $request->roles
+                'roles' => $request->roles,
+                'infoUpdate' => $request->infoUpdate,
             ]);
 
             if ($Gwupdate) {
