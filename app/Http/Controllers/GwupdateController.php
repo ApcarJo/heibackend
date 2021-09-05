@@ -46,6 +46,7 @@ class GwupdateController extends Controller
                 'date' => 'required',
                 'title' => 'required',
                 'roles' => 'required',
+                'infoUpdate',
             ]);
 
             $Gwupdate = Gwupdate::create([
