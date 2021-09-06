@@ -105,7 +105,7 @@ class TeamController extends Controller
     public function byId(Request $request)
     {
         $Team = Team::find($request->team_id);
-        if (!$Team->isEmpty()) {
+        if ($Team) {
             return response()->json([
                 'success' => true,
                 'data' => $Team

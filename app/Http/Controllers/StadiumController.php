@@ -104,8 +104,9 @@ class StadiumController extends Controller
      */
     public function byId(Request $request)
     {
-        $stadium = Stadium::where('id', '=', $request->stadium_id)->get();
-        if (!$stadium->isEmpty()) {
+        // $stadium = Stadium::where('id', '=', $request->stadium_id)->get();
+        $stadium = Stadium::find($request->stadium_id);
+        if ($stadium) {
             return response()->json([
                 'success' => true,
                 'data' => $stadium
