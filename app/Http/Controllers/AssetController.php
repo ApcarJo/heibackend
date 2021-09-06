@@ -94,7 +94,7 @@ class AssetController extends Controller
      */
     public function byId(Request $request)
     {
-        $Asset = Asset::where('id', '=', $request->asset_id)->get();
+        $Asset = Asset::find($request->asset_id);
         if (!$Asset->isEmpty()) {
             return response()->json([
                 'success' => true,
