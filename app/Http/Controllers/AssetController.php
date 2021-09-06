@@ -94,7 +94,7 @@ class AssetController extends Controller
      */
     public function byId(Request $request)
     {
-        $Asset = Asset::where('id', '=', $request->Asset_id)->get();
+        $Asset = Asset::where('id', '=', $request->asset_id)->get();
         if (!$Asset->isEmpty()) {
             return response()->json([
                 'success' => true,
@@ -210,7 +210,7 @@ class AssetController extends Controller
 
         if ($user->isAdmin) {
 
-            $Asset = Asset::find($request->Asset_id);
+            $Asset = Asset::find($request->asset_id);
 
             if ($Asset) {
 

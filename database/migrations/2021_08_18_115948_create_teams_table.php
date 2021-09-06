@@ -22,6 +22,7 @@ class CreateTeamsTable extends Migration
             $table->boolean('isUEL')->default(false);
             $table->boolean('isSC')->default(false);
             $table->boolean('isCDR')->default(false);
+            $table->boolean('isActive')->default(true);
             $table->timestamps();
 
         });

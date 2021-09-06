@@ -25,7 +25,7 @@ class CreateStadiaTable extends Migration
             $table->boolean('isActive')->default(true);
             $table->boolean('isGLT')->default(false);
             $table->boolean('isRobot')->default(false);
-            $table->boolean('hasRraCover')->default(true);
+            $table->boolean('rraCover')->default(true);
             $table->string('information')->nullable();
             $table->timestamps();
         });
