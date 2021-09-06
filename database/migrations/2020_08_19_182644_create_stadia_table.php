@@ -20,10 +20,11 @@ class CreateStadiaTable extends Migration
             $table->string('address')->unique();
             $table->string('tvCompound')->nullable();
             $table->string('contact')->nullable();
-            $table->string('docs')->nullable();
+            $table->string('contactPhone')->nullable();
+            $table->string('docsLink')->nullable();
             $table->boolean('isActive')->default(true);
             $table->boolean('isGLT')->default(false);
-            $table->boolean('isRobot')->nullable();
+            $table->boolean('isRobot')->default(false);
             $table->boolean('hasRraCover')->default(true);
             $table->string('information')->nullable();
             $table->timestamps();
