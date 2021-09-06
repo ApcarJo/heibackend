@@ -95,7 +95,7 @@ class AssetController extends Controller
     public function byId(Request $request)
     {
         $Asset = Asset::find($request->asset_id);
-        if (!$Asset->isEmpty()) {
+        if ($Asset) {
             return response()->json([
                 'success' => true,
                 'data' => $Asset
@@ -107,6 +107,8 @@ class AssetController extends Controller
             ], 400);
         }
     }
+
+    
 
     /**
      * Display the specified resource.
