@@ -80,7 +80,7 @@ class UsergwController extends Controller
      */
     public function byId(Request $request)
     {
-        $usergw = usergw::where('id', '=', $request->usergw_id)->get();
+        $usergw = usergw::find($request->usergw_id);
         if (!$usergw->isEmpty()) {
             return response()->json([
                 'success' => true,
@@ -250,7 +250,7 @@ class UsergwController extends Controller
 
         if ($user->isAdmin) {
 
-            $usergw = usergw::where('id', '=', $request->usergw_id)->delete();
+            $usergw = usergw::find($request->usergw_id)->delete();
 
             if ($usergw) {
 

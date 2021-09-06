@@ -184,7 +184,7 @@ class UserTeamController extends Controller
 
         if ($user->isAdmin) {
 
-            $userTeam = userTeam::where('id', '=', $request->userTeam_id)->delete();
+            $userTeam = userTeam::find($request->userTeam_id)->delete();
 
             if ($userTeam) {
 

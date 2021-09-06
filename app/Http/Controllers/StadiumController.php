@@ -207,7 +207,7 @@ class StadiumController extends Controller
 
         if ($user->isAdmin) {
 
-            $stadium = Stadium::where('id', '=', $request->stadium_id)->delete();
+            $stadium = Stadium::find($request->stadium_id)->delete();
 
             if ($stadium) {
 

@@ -104,7 +104,7 @@ class TeamController extends Controller
      */
     public function byId(Request $request)
     {
-        $Team = Team::where('id', '=', $request->team_id)->get();
+        $Team = Team::find($request->team_id);
         if (!$Team->isEmpty()) {
             return response()->json([
                 'success' => true,
@@ -207,7 +207,7 @@ class TeamController extends Controller
 
         if ($user->isAdmin) {
 
-            $Team = Team::where('id', '=', $request->team_id)->delete();
+            $Team = Team::find($request->team_id)->delete();
 
             if ($Team) {
 
