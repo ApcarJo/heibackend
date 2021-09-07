@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Gwschedule extends Model
 {
     protected $fillable = [
-        'GW',
-        'Competition',
+        'gw',
+        'competition',
         'date',
         'kickOff',
         'stadium_id',
