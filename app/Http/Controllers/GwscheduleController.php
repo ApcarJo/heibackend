@@ -46,13 +46,13 @@ class GwscheduleController extends Controller
                 'date' => 'required',
                 'competition' => 'required',
                 'stadium_id',
-                'GW' => 'required'
+                'gw' => 'required'
             ]);
 
             $gwschedule = gwschedule::create([
                 'date' => $request->date,
                 'competition' => $request->competition,
-                'GW' => $request->gw,
+                'gw' => $request->gw,
                 'stadium_id' => $request->stadium_id
             ]);
 
@@ -83,7 +83,7 @@ class GwscheduleController extends Controller
      */
     public function byId(Request $request)
     {
-        $gwschedule = gwschedule::where('id', '=', $request->gwschedule_id)->get();
+        $gwschedule = gwschedule::find($request->gwschedule_id);
         if (!$gwschedule->isEmpty()) {
             return response()->json([
                 'success' => true,
@@ -231,7 +231,7 @@ class GwscheduleController extends Controller
 
         if ($user->isAdmin) {
 
-            $gwschedule = gwschedule::where('id', '=', $request->gwschedule_id)->delete();
+            $gwschedule = gwschedule::find($request->gwschedule_id)->delete();
 
             if ($gwschedule) {
 

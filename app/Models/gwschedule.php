@@ -16,7 +16,7 @@ class Gwschedule extends Model
         // 'userTeam_id',
         // 'matchgw_id'
         // 'vanGW_id',
-        'isMd-1',
+        'isMDMinus',
         'vlan',
         'port',
         'isActive',

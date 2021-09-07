@@ -32,7 +32,7 @@ class CreateUsersTable extends Migration
             $table->string('role')->nullable();
             $table->boolean('isActive')->default(true);
             $table->boolean('isArchive')->default(false);
-            $table->boolean('isAdmin')->default(true);
+            $table->boolean('isAdmin')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
